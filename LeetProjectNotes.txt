@@ -1,0 +1,29 @@
+A conveyor belt has packages that must be shipped to another port within variable days
+
+i^th package on the conveyor belt has weight of weights[i], each day ship is loaded with packages in order given by weights, cannot be more than max weight capacity (another variable)
+
+Return least weight capacity that will result in all packages being shipped within days variable
+
+Variables:
+days (int, user entered)
+weights (int array, user entered)
+ship capacity (int, user entered)
+
+Required logic for goal:
+- ask user for constraints
+- add weights in order of array ensuring they don't go over the value for capacity by end
+- if they do, tell user the time frame is impossible
+- print result
+
+Optional logic for goal:
+- be able to rerun the program
+- spruce up how output looks
+- handle user entering invalid input (e.g. user enters a character instead of a number)
+
+Scratch implementation:
+- create shipping class with weights array and days variable
+- create main class with program welcome entry (possibly asking user to start by entering a char as the logic for it to keep rerunning)
+- print asking the user to enter the variables to set for the shipping object we will create
+- calculate the loop using the array
+- do sanity check and print results (possibly in the middle of the output)
+- ask the user if they would like to run again
