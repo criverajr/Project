@@ -1,29 +1,24 @@
-A conveyor belt has packages that must be shipped to another port within variable days
+A conveyor belt has packages that must be shipped from one port to another within days days.
 
-i^th package on the conveyor belt has weight of weights[i], each day ship is loaded with packages in order given by weights, cannot be more than max weight capacity (another variable)
+The i^th package on the conveyor belt has a weight of weights[i]. Each day, we load the ship with packages on the conveyor belt (in the order given by weights). We may not load more weight than the maximum weight capacity of the ship.
 
-Return least weight capacity that will result in all packages being shipped within days variable
+Return the least weight capacity of the ship that will result in all the packages on the conveyor belt being shipped within days days.
+
 
 Variables:
-days (int, user entered)
-weights (int array, user entered)
-ship capacity (int, user entered)
+int days - days in which we want the packages shipped
+int[] weights - an array of all the package weights we want shipped
+int low - heaviest package from the array
+int high - total weight of the array
+int w - temp variable for comparing array values to build low and high
+int daysNeeded - for use in canShip to tally days needed to ship
+int currentLoad - for use in canShip to tally load per day
+int result - gives us our final answer
 
-Required logic for goal:
-- ask user for constraints
-- add weights in order of array ensuring they don't go over the value for capacity by end
-- if they do, tell user the time frame is impossible
-- print result
-
-Optional logic for goal:
-- be able to rerun the program
-- spruce up how output looks
-- handle user entering invalid input (e.g. user enters a character instead of a number)
-
-Scratch implementation:
-- create shipping class with weights array and days variable
-- create main class with program welcome entry (possibly asking user to start by entering a char as the logic for it to keep rerunning)
-- print asking the user to enter the variables to set for the shipping object we will create
-- calculate the loop using the array
-- do sanity check and print results (possibly in the middle of the output)
-- ask the user if they would like to run again
+Implementation:
+- Create shipWithinDays class that carries weights array and days int
+- Identify heaviest package and total weight of packages within class
+- Create canShip class that returns a boolean if a load and day combo is true or false
+- Call canShip within shipWithinDays to loop possibilities until low overtakes high
+- Return result
+- Create main class that calls Solution objects to test the accuracy of result

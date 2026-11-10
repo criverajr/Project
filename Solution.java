@@ -2,25 +2,26 @@ public class Solution
 {
     public int shipWithinDays(int[] weights, int days)
     {
-        int low = 0;
-        int high = 0;
+        int low = 0; // Heaviest single package
+        int high = 0; // Total package array weight
 
         for (int w : weights)
         {
-            low= Math.max(low, w); // mininum capacity must be at least the heaviest single package
-            high += w;  // Maximum capacity is the sum of all packages (shipped in 1 d
+            low = Math.max(low, w); // Compares w with low, giving heaviest weight
+            high += w;  // Adds running total of w as high
         }
-        int result = high;
-        // binary search for minimum viable capacity
-        while (low <= high)
+
+        int result = high; // Working default
+
+        while (low <= high) // Check possibilities until single package overtakes capacity
         {
-            int mid = low + (high - low) / 2;
+            int mid = low + (high - low) / 2; // Start with middle capacity
             if (canShip(weights, days, mid))
             {
-                result = mid; // mid is a valid capacity look for a smaller one
+                result = mid; // If mid capacity is valid, try smaller
                 high = mid - 1;
             } else {
-                low = mid + 1; // mid is too small, look for a larger capacity
+                low = mid + 1; // If mid capacity is too small, try larger
             }
         }
         return result;
@@ -28,18 +29,18 @@ public class Solution
 
     private boolean canShip(int[] weights, int days, int capacity)
     {
-        int daysNeeded = 1; 
-        int currentLoad = 0;
+        int daysNeeded = 1; // Min days needed
+        int currentLoad = 0; // Default load
 
         for (int w : weights)
         {
-            if (currentLoad  + w > capacity)
+            if (currentLoad  + w > capacity) // If load is full, move to next day reset capacity
             {
                 daysNeeded++;
                 currentLoad = 0;
             }
-            currentLoad += w;
+            currentLoad += w; // Build current load with each package
         }
-        return daysNeeded <= days;
+        return daysNeeded <= days; // If load works for days given, then true
     }
 }
